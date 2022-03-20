@@ -4,6 +4,7 @@ import Grid from "./components/Grid";
 import Navbar from "./components/Navbar.jsx";
 import Keyboard from "./components/Keyboard";
 import GameWin from "./components/GameWin";
+import GameOver from "./components/GameOver";
 
 import {WORDLIST} from "./Constants/WordList"
 import {FOODLIST} from "./Constants/FoodWordList"
@@ -40,6 +41,33 @@ function App() {
         setAnswer(item.toUpperCase());
     },[]);
 
+    const restart = () => {
+        setData([
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+        ]);
+        setColor([
+            ["", "", "", "", ""],
+            ["", "", "", "", ""],
+            ["", "", "", "", ""],
+            ["", "", "", "", ""],
+            ["", "", "", "", ""],
+            ["", "", "", "", ""],
+        ]);
+
+        
+        var item = FOODLIST[Math.floor(Math.random()*FOODLIST.length)];
+        setAnswer(item.toUpperCase());
+
+        setCurRow(0);
+        setCurCol(0);
+        setGameOver(false);
+        setVictory(false);
+    }
 
     const onEnter = () => {
         console.log('Enter')
@@ -116,7 +144,8 @@ function App() {
             <Navbar />
             <Grid data={data} color={color}/>
             <Keyboard onEnter={onEnter} onDelete={onDelete} onChar={onChar} />
-            <GameWin win={victory}/>
+            <GameWin victory={victory} restart={restart}/>
+            <GameOver over={gameOver} restart={restart}/>
         </div>
     );
 }

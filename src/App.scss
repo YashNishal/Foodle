@@ -163,3 +163,29 @@ body {
         }
     }
 }
+
+
+.modal-bg{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+
+    background:rgba(59, 59, 59, 0.63);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modal{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        width: min(400px, 70vw);
+        height: min(500px, 70vh);
+
+    }
+}

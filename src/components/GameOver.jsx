@@ -1,11 +1,11 @@
 import React from 'react'
 
-function GameWin({victory, restart}) {
+function GameWin({over, restart}) {
   return (
-      victory === true?
+    over === true?
     <div className='modal-bg'>
         <div className='modal'>
-            <p>You have won!!!</p>
+            <p>Game over!!!</p>
 
             <button onClick={() => restart()}>RESTART</button>
         </div>
