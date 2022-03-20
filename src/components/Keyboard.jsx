@@ -25,7 +25,6 @@ export default function Keyboard({
             } else if (e.code === "Backspace") {
                 onDelete();
             } else {
-                // const key = localeAwareUpperCase(e.key)
                 const key = e.key.toLocaleUpperCase("en-US");
                 if (key.length === 1 && key >= "A" && key <= "Z") {
                     onChar(key);
@@ -73,9 +72,8 @@ export default function Keyboard({
                         onClick={onClick}
                     />
                 ))}
-                <Key width={120} value="DELETE" onClick={onClick}>
-                    DELETE
-                </Key>
+
+                <Key width={120} value="DELETE" onClick={onClick}/>
             </div>
         </div>
     );

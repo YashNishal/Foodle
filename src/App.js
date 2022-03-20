@@ -1,7 +1,10 @@
 import "./App.scss";
+
 import Grid from "./components/Grid";
-import Navbar from "./components/Navbar.js";
+import Navbar from "./components/Navbar.jsx";
 import Keyboard from "./components/Keyboard";
+import GameWin from "./components/GameWin";
+
 import {WORDLIST} from "./Constants/WordList"
 import {FOODLIST} from "./Constants/FoodWordList"
 
@@ -13,7 +16,7 @@ function App() {
     const [curCol, setCurCol] = useState(0);
     const [gameOver,setGameOver] = useState(false);
     const [victory,setVictory] = useState(false);
-    const [input, setInput] = useState("");
+    
     const [data, setData] = useState([
         ['', '', '', '', ''],
         ['', '', '', '', ''],
@@ -113,6 +116,7 @@ function App() {
             <Navbar />
             <Grid data={data} color={color}/>
             <Keyboard onEnter={onEnter} onDelete={onDelete} onChar={onChar} />
+            <GameWin win={victory}/>
         </div>
     );
 }

@@ -9,6 +9,9 @@ $correct: #538d4e;
 $absent: #3a3a3c;
 $title: #ffffff;
 
+$small: 550px;
+$medium: 900px;
+
 * {
     margin: 0;
     padding: 0;
@@ -72,7 +75,7 @@ body {
             height: 7vh;
             width: 7vh;
             font-size: 3vh;
-            line-height: 8vh;
+            line-height: 6vh;
             text-align: center;
             border: solid 2px rgb(58, 58, 58);
             // box-shadow:inset 0 0 0 1px rgb(68, 68, 68);
@@ -97,10 +100,11 @@ body {
 }
 
 .keyboard {
-    position: fixed;
+    position: absolute;
+    bottom: 1vh;
     left: 50%;
-    bottom: 10px;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+
     margin: 0 auto;
     .keyboard-row {
         display: flex;
@@ -108,15 +112,54 @@ body {
         align-items: flex-end;
 
         .key {
-            text-align: center;
+            width: 40px;
+            height: 60px;
             margin: 4px;
-            padding: 15px;
+            
             border-radius: 6px;
             border: solid 1px grey;
             background-color: $normalkey;
             cursor: pointer;
-            font-size: small;
+            font-size: 12px;
             font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+
+            text-align: center;
+            vertical-align: middle;
+            line-height: 60px;
+
+            .DeleteIcon{
+                margin-top: 14px;
+                height: 30px;
+                background-color: grey;
+            }
+        }
+        .key[value="ENTER"]{
+            width: 70px;
+        }
+        .key[value="DELETE"]{
+            width: 60px;
+        }
+        @media screen and (max-width: $small) {
+            .key{
+                height: 55px;
+                line-height: 55px;
+
+                width: 7.8vw;
+                margin: 0.8vw;
+
+                .DeleteIcon{
+                    margin: 12px;
+                    height: 27px;
+                    width: 8vw;
+                }
+            }
+            .key[value="ENTER"]{
+                width: 13vw;
+            }
+            .key[value="DELETE"]{
+                width: 15vw;
+            }
         }
     }
 }
