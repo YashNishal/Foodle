@@ -6,6 +6,7 @@ export default function Keyboard({
     onChar,
     onDelete,
     onEnter,
+    keyMapping
 }) {
     
     const onClick = (value) => {
@@ -48,6 +49,7 @@ export default function Keyboard({
                             value={key}
                             key={key}
                             onClick={onClick}
+                            color={keyMapping[key]}
                         />
                     )
                 )}
@@ -58,6 +60,7 @@ export default function Keyboard({
                         value={key}
                         key={key}
                         onClick={onClick}
+                        color={keyMapping[key]}
                     />
                 ))}
             </div>
@@ -70,6 +73,7 @@ export default function Keyboard({
                         value={key}
                         key={key}
                         onClick={onClick}
+                        color={keyMapping[key]}
                     />
                 ))}
 

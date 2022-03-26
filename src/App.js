@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar.jsx";
 import Keyboard from "./components/Keyboard";
 import GameWin from "./components/GameWin";
 import GameOver from "./components/GameOver";
+import HowToPlay from "./components/HowToPlay";
 
 import {WORDLIST} from "./Constants/WordList"
 import {FOODLIST} from "./Constants/FoodWordList"
@@ -12,6 +13,8 @@ import {FOODLIST} from "./Constants/FoodWordList"
 import { React, useEffect, useState } from "react";
 
 function App() {
+
+    const [showHowToPlay,setShowHowToPlay] = useState(false);
     const [answer,setAnswer] = useState("");
     const [curRow, setCurRow] = useState(0);
     const [curCol, setCurCol] = useState(0);
@@ -35,7 +38,10 @@ function App() {
         ["", "", "", "", ""],
     ])
 
+    const [keyMapping,setkeyMapping] = useState({});
     
+  
+
     useEffect( ()=>{
         var item = FOODLIST[Math.floor(Math.random()*FOODLIST.length)];
         setAnswer(item.toUpperCase());
@@ -67,7 +73,9 @@ function App() {
         setCurCol(0);
         setGameOver(false);
         setVictory(false);
+        setkeyMapping({});
     }
+
 
     const onEnter = () => {
         console.log('Enter')
@@ -83,19 +91,32 @@ function App() {
         console.log("Answer word is : " + answer);
         setColor( (prevColor) => {
             const color = prevColor;
-        
+            const keyMap = keyMapping;
+
             for(let i = 0 ; i < 5 ; i++) {
                 if(answer[i] === word[i] ) {
                     color[curRow][i] = "Green";
+                    keyMap[answer[i]] = "Green";
+                    // keyMap.set(answer[i],"Green");
                 }
                 else if(answer.match(word[i]) !== null) {
                     color[curRow][i] = "Yellow";
+                    if(keyMap[word[i]] !== "Green") {
+                        keyMap[word[i]] = "Yellow"
+                        // keyMap.set(word[i],"Yellow")
+                    }
                 }
                 else {
                     color[curRow][i] = "Grey";
+                    if(keyMap[word[i]] !== "Green" && keyMap[word[i]] !== "Yellow") {
+                        keyMap[word[i]] = "Grey"
+                        // keyMap.set(word[i],"Grey")
+                    }
                 }
             }
+            setkeyMapping(keyMap);
             console.log(color);
+            console.log(keyMap);
             return color;
         });
 
@@ -141,11 +162,12 @@ function App() {
 
     return (
         <div className="App">
-            <Navbar />
+            <Navbar hptOnClick={ () => {setShowHowToPlay(!showHowToPlay)} }/>
             <Grid data={data} color={color}/>
-            <Keyboard onEnter={onEnter} onDelete={onDelete} onChar={onChar} />
+            <Keyboard onEnter={onEnter} onDelete={onDelete} onChar={onChar} keyMapping={keyMapping}/>
             <GameWin victory={victory} restart={restart}/>
             <GameOver over={gameOver} restart={restart}/>
+            <HowToPlay onClick={ () => {setShowHowToPlay(!showHowToPlay)} } show={showHowToPlay} />
         </div>
     );
 }

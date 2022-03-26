@@ -81,22 +81,29 @@ body {
             // box-shadow:inset 0 0 0 1px rgb(68, 68, 68);
         }
 
-        .Green {
-            background-color: $correct;
-        }
-
-        .Yellow {
-            background-color: $present;
-        }
-
-        .Grey {
-            background-color: $absent;
-        }
+        
 
         .box[filled="1"] {
             border: solid 2px rgb(92, 92, 92);
         }
     }
+}
+
+.Green {
+    background-color: $correct;
+}
+
+.Yellow {
+    background-color: $present;
+}
+
+.Grey {
+    background-color: $absent;
+}
+
+.normal {
+    background-color: $normalkey;
+    border: solid 1px grey;
 }
 
 .keyboard {
@@ -117,8 +124,7 @@ body {
             margin: 4px;
             
             border-radius: 6px;
-            border: solid 1px grey;
-            background-color: $normalkey;
+            
             cursor: pointer;
             font-size: 12px;
             font-family: Arial, Helvetica, sans-serif;
@@ -172,7 +178,7 @@ body {
     top: 0;
     left: 0;
 
-    background:rgba(59, 59, 59, 0.63);
+    background:rgba(18, 18, 19, 0.9);
 
     display: flex;
     justify-content: center;
@@ -187,5 +193,34 @@ body {
         width: min(400px, 70vw);
         height: min(500px, 70vh);
 
+    }
+
+    
+}
+
+.modal-bg-htp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background:rgba(18, 18, 19, 0.9);
+    .tutorial {
+        display: flex;
+        flex-direction: column;
+        // align-items: flex-start;
+        width: min(200px,100vp);
+        .htp-heading {
+            text-align: center;
+            font-size: 22px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif
+        }
+        p {
+            font-size: 14px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif
+        }
+        .example {
+            display: flex;
+        }
     }
 }

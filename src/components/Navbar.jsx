@@ -3,11 +3,11 @@ import "../App.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
 
-function Navbar() {
+function Navbar({hptOnClick}) {
   return (
     <div className = "Navbar">
         <div className="Rightnav">
-            <div className="Helpmenu">
+            <div className="Helpmenu" onClick={hptOnClick}>
                 <FontAwesomeIcon icon={faCircleQuestion} />
             </div>
         </div>
