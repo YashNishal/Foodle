@@ -21,6 +21,7 @@ function App() {
     const [gameOver,setGameOver] = useState(false);
     const [victory,setVictory] = useState(false);
     const [bounce, setBounce] = useState([-1, -1]);
+    const [flip, setFlip] = useState([-1, -1]);
     
     const [data, setData] = useState([
         ['', '', '', '', ''],
@@ -79,6 +80,7 @@ function App() {
 
 
     const onEnter = () => {
+        setFlip([-1, -1]);
         setBounce([-1, -1]);
         console.log('Enter')
         let word = "";
@@ -91,11 +93,13 @@ function App() {
         const idx = WORDLIST.indexOf(word.toLowerCase());
         if(idx === -1) return;
         console.log("Answer word is : " + answer);
-        setColor( (prevColor) => {
-            const color = prevColor;
-            const keyMap = keyMapping;
 
-            for(let i = 0 ; i < 5 ; i++) {
+        let i = 0;
+        let Int = setInterval(() =>{
+            setColor( (prevColor) => {
+                const color = prevColor;
+                const keyMap = keyMapping;
+
                 if(answer[i] === word[i] ) {
                     color[curRow][i] = "Green";
                     keyMap[answer[i]] = "Green";
@@ -115,27 +119,37 @@ function App() {
                         // keyMap.set(word[i],"Grey")
                     }
                 }
-            }
-            setkeyMapping(keyMap);
-            console.log(color);
-            console.log(keyMap);
-            return color;
-        });
+                
+                setFlip([curRow, i]);
+                
+                setkeyMapping(keyMap);
+                console.log(color);
+                console.log(keyMap);
+                return color;
+            });
+            i++;
+            if(i >= 5){
+                clearInterval(Int);
 
-        if(answer === word) {
-            setVictory(true);
-            return;
+                if(answer === word) {
+                    setVictory(true);
+                    return;
+                }
+                if(curRow === 5) {
+                    setGameOver(true);
+                    return;
+                }
+                setCurRow(curRow+1);
+                setCurCol(0);
+
+            }
         }
-        if(curRow === 5) {
-            setGameOver(true);
-            return;
-        }
-        setCurRow(curRow+1);
-        setCurCol(0);
+        , 400)
     };
 
 
     const onDelete = () => {
+        setFlip([-1, -1]);
         // console.log('delete')
         if(curCol > 0 && !gameOver && !victory) {
             setData( (prev) => {
@@ -150,6 +164,7 @@ function App() {
 
 
     const onChar = (value) => {
+        setFlip([-1, -1]);
         // console.log("char : "+value);
         // console.log(curCol+" " +gameOver);
         if(curCol < 5 && !gameOver && !victory) {
@@ -167,7 +182,7 @@ function App() {
     return (
         <div className="App">
             <Navbar hptOnClick={ () => {setShowHowToPlay(!showHowToPlay)} }/>
-            <Grid data={data} color={color} bounce={bounce}/>
+            <Grid data={data} color={color} bounce={bounce} flip={flip}/>
             <Keyboard onEnter={onEnter} onDelete={onDelete} onChar={onChar} keyMapping={keyMapping}/>
             <GameWin victory={victory} restart={restart}/>
             <GameOver over={gameOver} restart={restart}/>
