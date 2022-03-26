@@ -47,6 +47,7 @@ function App() {
     useEffect( ()=>{
         var item = FOODLIST[Math.floor(Math.random()*FOODLIST.length)];
         setAnswer(item.toUpperCase());
+        // console.log(answer)
     },[]);
 
     const restart = () => {
@@ -70,7 +71,8 @@ function App() {
         
         var item = FOODLIST[Math.floor(Math.random()*FOODLIST.length)];
         setAnswer(item.toUpperCase());
-
+        setFlip([-1,-1]);
+        setBounce([-1,-1]);
         setCurRow(0);
         setCurCol(0);
         setGameOver(false);
@@ -80,9 +82,9 @@ function App() {
 
 
     const onEnter = () => {
+        
         setFlip([-1, -1]);
         setBounce([-1, -1]);
-        console.log('Enter')
         let word = "";
         data[curRow].forEach( (letter) => {
             word += letter;
@@ -96,6 +98,7 @@ function App() {
 
         let i = 0;
         let Int = setInterval(() =>{
+            if(i < 5) 
             setColor( (prevColor) => {
                 const color = prevColor;
                 const keyMap = keyMapping;
@@ -123,8 +126,6 @@ function App() {
                 setFlip([curRow, i]);
                 
                 setkeyMapping(keyMap);
-                console.log(color);
-                console.log(keyMap);
                 return color;
             });
             i++;
@@ -132,11 +133,15 @@ function App() {
                 clearInterval(Int);
 
                 if(answer === word) {
-                    setVictory(true);
+                    setTimeout( ()=>{
+                        setVictory(true);
+                    },500)
                     return;
                 }
                 if(curRow === 5) {
-                    setGameOver(true);
+                    setTimeout( ()=>{
+                        setGameOver(true);
+                    },500)
                     return;
                 }
                 setCurRow(curRow+1);
@@ -144,13 +149,12 @@ function App() {
 
             }
         }
-        , 400)
+        , 500)
     };
 
 
     const onDelete = () => {
         setFlip([-1, -1]);
-        // console.log('delete')
         if(curCol > 0 && !gameOver && !victory) {
             setData( (prev) => {
                 const data = prev;
@@ -184,8 +188,8 @@ function App() {
             <Navbar hptOnClick={ () => {setShowHowToPlay(!showHowToPlay)} }/>
             <Grid data={data} color={color} bounce={bounce} flip={flip}/>
             <Keyboard onEnter={onEnter} onDelete={onDelete} onChar={onChar} keyMapping={keyMapping}/>
-            <GameWin victory={victory} restart={restart}/>
-            <GameOver over={gameOver} restart={restart}/>
+            <GameWin victory={victory} restart={restart} color={color}/>
+            <GameOver over={gameOver} restart={restart} answer={answer} color={color}/>
             <HowToPlay onClick={ () => {setShowHowToPlay(!showHowToPlay)} } show={showHowToPlay} />
         </div>
     );

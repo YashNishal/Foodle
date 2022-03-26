@@ -1,13 +1,19 @@
 import React from 'react'
+import Stats from './Stats'
 
-function GameWin({over, restart}) {
+function GameOver({over, restart, answer, data, color}) {
+  console.log(color);
   return (
-    over === true?
+    over ?
     <div className='modal-bg'>
         <div className='modal'>
-            <p>Game over!!!</p>
+          <p>The answer was:</p>
+          <p>{answer}</p>
 
-            <button onClick={() => restart()}>RESTART</button>
+          <p>Your statistics:</p>
+          <Stats color={color}/>
+
+          <button className={'restart-btn'} onClick={() => restart()}>RESTART</button>
         </div>
     </div>
     :
@@ -15,4 +21,4 @@ function GameWin({over, restart}) {
   )
 }
 
-export default GameWin
+export default GameOver
