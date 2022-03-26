@@ -27,6 +27,11 @@ body {
     width: 100%;
 }
 
+
+// hr {
+//     border : 1px solid $bordercolor;
+// }
+
 /* 
 
   navbar 
@@ -71,21 +76,53 @@ body {
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(6, auto);
 
-        .box {
-            height: 7vh;
-            width: 7vh;
-            font-size: 3vh;
-            line-height: 6vh;
-            text-align: center;
-            border: solid 2px rgb(58, 58, 58);
-            // box-shadow:inset 0 0 0 1px rgb(68, 68, 68);
-        }
+    }
+}
 
-        
+.box {
+    height: 7vh;
+    width: 7vh;
+    font-size: 3vh;
+    line-height: 6vh;
+    text-align: center;
+    border: solid 2px rgb(58, 58, 58);
+    // box-shadow:inset 0 0 0 1px rgb(68, 68, 68);
+}
 
-        .box[filled="1"] {
-            border: solid 2px rgb(92, 92, 92);
-        }
+  
+
+
+.box[filled="1"] {
+    border: solid 2px rgb(92, 92, 92);
+}
+
+.box[bounce="1"] {
+    border: solid 2px rgb(92, 92, 92);
+    animation: bounce 100ms ease-in;
+}
+
+// .bounce{
+//     animation: bounce 100ms ease-in;
+// }
+
+@keyframes flip{
+    0%{
+        transform: rotateX(180deg);
+    }
+    100%{
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes bounce{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
     }
 }
 
@@ -178,7 +215,7 @@ body {
     top: 0;
     left: 0;
 
-    background:rgba(18, 18, 19, 0.9);
+    background:rgba(18, 18, 19, 0.95);
 
     display: flex;
     justify-content: center;
@@ -196,6 +233,8 @@ body {
     }
 
     
+
+    
 }
 
 .modal-bg-htp {
@@ -204,23 +243,58 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background:rgba(18, 18, 19, 0.9);
+    background:rgba(18, 18, 19, 0.95);
+
+    
+
     .tutorial {
         display: flex;
         flex-direction: column;
         // align-items: flex-start;
-        width: min(200px,100vp);
+        width: min(500px,100vw);
+        margin: 0 auto;
+        .heading {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+
         .htp-heading {
+            position: relative;
+            justify-self: center;
             text-align: center;
             font-size: 22px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin : 10px;
+            font-weight: bold;
+
+            .cross {
+                position: absolute;
+                padding: 2px;
+                right: 0;
+            }
         }
+
+        .examples {
+            border-top: 1px solid $bordercolor;
+            border-bottom: 1px solid $bordercolor;
+        }
+
         p {
-            font-size: 14px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif
+            font-size: 16px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin : 10px;
+        }
+        h2 {
+            font-size: 18px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin : 10px;
         }
         .example {
+            margin-left: 10px;
             display: flex;
+            gap: 12px;
         }
     }
 }

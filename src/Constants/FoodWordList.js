@@ -1,7 +1,6 @@
 export const FOODLIST = [
     "anise",
     "apple",
-    "aspic",
     "bacon",
     "bagel",
     "basil",
@@ -47,6 +46,7 @@ export const FOODLIST = [
     "liver",
     "lunch",
     "maize",
+    "Maggi",
     "mango",
     "melon",
     "mints",
@@ -85,7 +85,6 @@ export const FOODLIST = [
     "syrup",
     "thyme",
     "toast",
-    "torte",
     "tuber",
     "wafer",
     "water",

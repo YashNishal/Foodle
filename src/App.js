@@ -20,6 +20,7 @@ function App() {
     const [curCol, setCurCol] = useState(0);
     const [gameOver,setGameOver] = useState(false);
     const [victory,setVictory] = useState(false);
+    const [bounce, setBounce] = useState([-1, -1]);
     
     const [data, setData] = useState([
         ['', '', '', '', ''],
@@ -78,6 +79,7 @@ function App() {
 
 
     const onEnter = () => {
+        setBounce([-1, -1]);
         console.log('Enter')
         let word = "";
         data[curRow].forEach( (letter) => {
@@ -139,6 +141,7 @@ function App() {
             setData( (prev) => {
                 const data = prev;
                 data[curRow][curCol-1] = "";
+                setBounce([-1, -1]);
                 return data;
             })
             setCurCol(curCol-1);
@@ -154,6 +157,7 @@ function App() {
             setData( (prev) => {
                 const data = prev;
                 data[curRow][curCol] = value;
+                setBounce([curRow, curCol]);
                 return data;
             })
             setCurCol(curCol+1);
@@ -163,7 +167,7 @@ function App() {
     return (
         <div className="App">
             <Navbar hptOnClick={ () => {setShowHowToPlay(!showHowToPlay)} }/>
-            <Grid data={data} color={color}/>
+            <Grid data={data} color={color} bounce={bounce}/>
             <Keyboard onEnter={onEnter} onDelete={onDelete} onChar={onChar} keyMapping={keyMapping}/>
             <GameWin victory={victory} restart={restart}/>
             <GameOver over={gameOver} restart={restart}/>
