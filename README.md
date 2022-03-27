@@ -31,6 +31,9 @@ Follow the given steps to run on Localhost:
 ---
 ## EPILOGUE
 This projectwas created with by [Yash Nishal](https://github.com/YashNishal) and [Himanshu](https://github.com/HardySLAYS), members of Team EdBun.
+
+We have hosted this app on Netlify. You can play the game on this URL - [FOODLE](https://foodle-edbun.netlify.app/).
+
 If you have any queries or grievences, or want to point out any issues in the Project, please feel free to use the `Issues` section of the Repo.
 
 ### Happy coding!!!
