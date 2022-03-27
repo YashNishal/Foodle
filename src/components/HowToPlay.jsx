@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function HowToPlay({ onClick, show }) {
-    console.log(show);
     return show ? (
         <div className="modal-bg-htp">
             <div className="tutorial">
@@ -32,7 +31,7 @@ export default function HowToPlay({ onClick, show }) {
                     <h2>Examples</h2>
                     <br />
                     <div className="example">
-                        {["S", "U", "S", "H", "I"].map((value) => {
+                        {["S", "U", "S", "H", "I"].map((value,idx) => {
                             return (
                                 <Box
                                     className={`box ${
@@ -40,6 +39,7 @@ export default function HowToPlay({ onClick, show }) {
                                     }`}
                                     value={value}
                                     filled={value === "U" ? 0 : 1}
+                                    key={idx}
                                 />
                             );
                         })}
@@ -47,7 +47,7 @@ export default function HowToPlay({ onClick, show }) {
                     <p>The letter U is in the word and in the correct spot.</p>
                     <br />
                     <div className="example">
-                        {["C", "H", "I", "P", "S"].map((value) => {
+                        {["C", "H", "I", "P", "S"].map((value,idx) => {
                             return (
                                 <Box
                                     className={`box ${
@@ -55,6 +55,7 @@ export default function HowToPlay({ onClick, show }) {
                                     }`}
                                     value={value}
                                     filled={value === "I" ? 0 : 1}
+                                    key={idx}
                                 />
                             );
                         })}
@@ -62,7 +63,7 @@ export default function HowToPlay({ onClick, show }) {
                     <p>The letter I is in the word but in the wrong spot.</p>
                     <br />
                     <div className="example">
-                        {["J", "E", "L", "L", "Y"].map((value) => {
+                        {["J", "E", "L", "L", "Y"].map((value,idx) => {
                             return (
                                 <Box
                                     className={`box ${
@@ -70,6 +71,7 @@ export default function HowToPlay({ onClick, show }) {
                                     }`}
                                     value={value}
                                     filled={value === "Y" ? 0 : 1}
+                                    key={idx}
                                 />
                             );
                         })}
@@ -77,12 +79,6 @@ export default function HowToPlay({ onClick, show }) {
                     <p>The letter Y is not in the word in any spot.</p>
                     <br />
 
-                    {/* <Box
-                        key={i + " " + j}
-                        className={`box ${bgColor}`}
-                        filled={data[i][j] === "" ? 0 : 1}
-                        value={data[i][j]}
-                    /> */}
                 </div>
             </div>
         </div>

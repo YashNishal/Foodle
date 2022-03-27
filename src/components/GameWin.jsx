@@ -18,9 +18,8 @@ function GameWin({victory, restart, color}) {
     victory ?
     <div className='modal-bg'>
         <div className='modal'>
-          <p>You win!!!</p>
+          <p>You win!</p>
 
-          <p>Your statistics:</p>
           <Stats color={color}/>
 
           <button className={'restart-btn'} onClick={() => restart()}>RESTART</button>

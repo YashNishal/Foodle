@@ -47,7 +47,6 @@ function App() {
     useEffect( ()=>{
         var item = FOODLIST[Math.floor(Math.random()*FOODLIST.length)];
         setAnswer(item.toUpperCase());
-        // console.log(answer)
     },[]);
 
     const restart = () => {
@@ -78,6 +77,7 @@ function App() {
         setGameOver(false);
         setVictory(false);
         setkeyMapping({});
+        console.log(answer)
     }
 
 
