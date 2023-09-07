@@ -1,7 +1,7 @@
 {
   "name": "foodle",
   "version": "0.1.0",
-  "homepage": "https://hardySLAYS.github.io/Foodle",
+  "homepage": "https://yashnishal.github.io/Foodle",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.0",
