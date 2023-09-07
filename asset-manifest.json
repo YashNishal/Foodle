@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Foodle/static/css/main.9401cc90.css",
+    "main.js": "/Foodle/static/js/main.cf62cb84.js",
+    "service-worker.js": "/Foodle/service-worker.js",
+    "index.html": "/Foodle/index.html",
+    "main.9401cc90.css.map": "/Foodle/static/css/main.9401cc90.css.map",
+    "main.cf62cb84.js.map": "/Foodle/static/js/main.cf62cb84.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9401cc90.css",
+    "static/js/main.cf62cb84.js"
+  ]
+}
